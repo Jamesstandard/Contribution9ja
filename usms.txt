@@ -1,0 +1,128 @@
+
+us sms
+Embarking on a new goalgoal is to Implement the ussd Bank Transfer Flow using the App0 API, included all the Nigerian banks and popular online wallets like monipoint and opay. Ensure currency is in naira, ensure the flow and text format, terminology conforms with bank of Nigeria use SMS when applicable. Secondly using next.js replicate Nigeria the ecobank mobile app business logic and transfer features using http protocol : ensure the code is fully integrated to the UI code provided:::::: 'use client'
+
+import { useState } from 'react'
+import { Bell, CreditCard, HelpCircle, Home, MoreHorizontal, Settings } from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { AccountDetails } from "./account-details"
+
+export default function Component() {
+const [showBalance, setShowBalance] = useState(false)
+const [showAccountDetails, setShowAccountDetails] = useState(false)
+const [balance, setBalance] = useState("10,000.00")
+
+return (
+<div className="flex flex-col h-screen bg-[#005555] text-white">
+<header className="p-4 flex items-center justify-between">
+<div className="flex items-center space-x-2">
+<Avatar className="w-12 h-12">
+<AvatarImage src="/placeholder.svg?height=48&width=48" alt="User" />
+<AvatarFallback>LO</AvatarFallback>
+</Avatar>
+<div>
+<p className="text-sm opacity-80">Welcome back,</p>
+<h1 className="text-2xl font-bold">Lawal Oluwaseun</h1>
+</div>
+</div>
+<div className="flex space-x-2">
+<div className="w-6 h-6 bg-green-500" />
+<div className="w-6 h-6 bg-blue-500 rotate-180" />
+</div>
+</header>
+
+  &lt;main className="flex-1 overflow-auto px-4 py-6"&gt;
+    &lt;section&gt;
+      &lt;div className="flex justify-between items-center mb-4"&gt;
+        &lt;h2 className="text-xl font-semibold"&gt;MY ACCOUNTS&lt;/h2&gt;
+        &lt;Button variant="link" className="text-white p-0" onClick={() =&gt; setShowAccountDetails(true)}&gt;
+          VIEW ALL
+        &lt;/Button&gt;
+      &lt;/div&gt;
+      &lt;Card className="bg-[#0088CC] text-white"&gt;
+        &lt;CardHeader className="pb-2"&gt;
+          &lt;CardTitle className="flex justify-between items-center"&gt;
+            &lt;span&gt;Xpress Account&lt;/span&gt;
+            &lt;Settings className="h-6 w-6" /&gt;
+          &lt;/CardTitle&gt;
+          &lt;p className="text-lg"&gt;1681073766&lt;/p&gt;
+        &lt;/CardHeader&gt;
+        &lt;CardContent&gt;
+          {showBalance ? (
+            &lt;div className="text-2xl font-bold mb-2"&gt;NGN {balance}&lt;/div&gt;
+          ) : (
+            &lt;Button 
+              className="w-full bg-white text-[#0088CC] hover:bg-gray-100 font-semibold"
+              onClick={() =&gt; setShowBalance(true)}
+            &gt;
+              Show my balance
+            &lt;/Button&gt;
+          )}
+        &lt;/CardContent&gt;
+      &lt;/Card&gt;
+    &lt;/section&gt;
+
+    &lt;section className="mt-8"&gt;
+      &lt;h2 className="text-xl font-semibold mb-4"&gt;QUICK TRANSACTION&lt;/h2&gt;
+      &lt;div className="grid grid-cols-2 gap-4"&gt;
+        {[
+          { icon: "📱", label: "Airtime/Data" },
+          { icon: "↔️", label: "Transfer" },
+          { icon: "📄", label: "Pay Bill" },
+          { icon: "💨", label: "Xpress Cash" },
+          { icon: "💳", label: "EcobankPay" },
+          { icon: "🔀", label: "Split Payments" },
+        ].map((item, index) =&gt; (
+          &lt;Button
+            key={index}
+            variant="outline"
+            className="h-20 flex flex-col items-center justify-center bg-white text-[#005555] hover:bg-gray-100"
+          &gt;
+            &lt;span className="text-2xl mb-1"&gt;{item.icon}&lt;/span&gt;
+            &lt;span className="text-sm"&gt;{item.label}&lt;/span&gt;
+          &lt;/Button&gt;
+        ))}
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section className="mt-8"&gt;
+      &lt;h2 className="text-xl font-semibold mb-4"&gt;YOUR ACTIVITY&lt;/h2&gt;
+      &lt;Card className="bg-white text-[#005555]"&gt;
+        &lt;CardContent className="p-4"&gt;
+          &lt;div className="flex items-center space-x-4"&gt;
+            &lt;div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"&gt;🏦&lt;/div&gt;
+            &lt;div className="flex-1"&gt;
+              &lt;h3 className="font-semibold"&gt;Transfer to Other Local Bank&lt;/h3&gt;
+              &lt;p className="text-sm opacity-70"&gt;Reason: Pin&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div className="text-right"&gt;
+              &lt;p className="font-semibold"&gt;NGN 3,000.00&lt;/p&gt;
+              &lt;p className="text-sm opacity-70"&gt;Oct 9&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/CardContent&gt;
+      &lt;/Card&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer className="bg-white text-[#005555] p-4"&gt;
+    &lt;nav className="flex justify-between"&gt;
+      {[
+        { icon: Home, label: "HOME" },
+        { icon: CreditCard, label: "CARDS" },
+        { icon: HelpCircle, label: "HELP" },
+        { icon: Bell, label: "NOTIFICATIONS" },
+        { icon: MoreHorizontal, label: "MORE" },
+      ].map((item, index) =&gt; (
+        &lt;Button key={index} variant="ghost" className="flex flex-col items-center"&gt;
+          &lt;item.icon className="h-6 w-6" /&gt;
+          &lt;span className="text-xs mt-1"&gt;{item.label}&lt;/span&gt;
+        &lt;/Button&gt;
+      ))}
+    &lt;/nav&gt;
+  &lt;/footer&gt;
+
+  {showAccountDetails &amp;&amp; &lt;AccountDetails onClose={() =&gt; setShowAccountDetails(false)} /&gt;}
+&lt;/div&gt;
